@@ -1,25 +1,22 @@
-from PySimpleGUI import PySimpleGUI as sg
+import PySimpleGUI as sg
 
-# Layout
-sg.theme('Reddit')
-layout = [
-   
-      [sg.Text('Usúario'), sg.Input(key = 'usuario')],
-      [sg.Text('Senha'), sg.Input(key = 'senha', password_char= '*')],
-      [sg.Checkbox('Salvar o login?'),],
-      [sg.Button('Entrar')],
 
-]
+def main():
+    layout = [[sg.Button("Open Window", key="open")]]
+    window = sg.Window("Main Window", layout)
+    while True:
+        event, values = window.read()
+        if event == "Exit" or event == sg.WIN_CLOSED:
+            break
+        if event == "open":
+            if sg.Window("Other Window", [[sg.Text("Try Again?")], 
+                                          [sg.Yes(), sg.No()]]).read(close=True)[0] == "Yes":
+                print("User chose yes!")
+            else:
+                print("User chose no!")
+        
+    window.close()
 
-# Janela
-janela = sg.Window('Tela de login', layout),
-# Ler os eventos da tela
-while True:
-   eventos, valores = janela.read()
-   if eventos == sg.WINDOW_CLOSED:
-         break
-   if eventos == 'Entrar':
-      if valores['usuario'] == 'lucas' and valores['senha']
-         == '123456':
-         print('Bem vindo!')
 
+if __name__ == "__main__":
+    main()
